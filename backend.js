@@ -35,6 +35,6 @@ app.ws("/shell", (ws, req) => {
   });
 });
 
-const server = app.listen(6060, () => {
+const server = app.listen(6060, "0.0.0.0", () => {
   console.log("Express.js WebSocket server is listening on port 6060.");
 });
