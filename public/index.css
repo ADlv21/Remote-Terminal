@@ -61,6 +61,8 @@
 }
 
 .xterm canvas {
+    width: 100px;
+    height: 100px;
     position: absolute;
     left: 0;
     top: 0;
@@ -84,4 +86,8 @@
 
 .xterm:not(.enable-mouse-events) {
     cursor: text;
+}
+
+canvas .xterm-text-layer {
+    width: 100%;
 }
