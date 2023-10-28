@@ -1,4 +1,4 @@
-const socket = new WebSocket("ws://localhost:6060");
+const socket = new WebSocket("ws://13.233.98.225:6060");
 
 var term = new window.Terminal({
   cursorBlink: true,

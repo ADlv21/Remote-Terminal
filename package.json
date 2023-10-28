@@ -1,4 +1,13 @@
 {
+  "name": "interactive-terminal",
+  "version": "1.0.0",
+  "description": "## Requirements: - NodeJS >= v16 and NPM",
+  "main": "backend.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
   "dependencies": {
     "node-pty": "^1.0.0",
     "ws": "^8.14.2"
