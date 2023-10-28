@@ -1,4 +1,4 @@
-const socket = new WebSocket("ws://0.0.0.0:6060/shell");
+const socket = new WebSocket("ws://13.233.98.225:6060/shell");
 
 var term = new window.Terminal({
   cursorBlink: true,
