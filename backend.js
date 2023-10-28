@@ -14,7 +14,7 @@ var ptyProcess = pty.spawn(shell, [], {
   name: "xterm-256color",
   cwd: process.env.PWD,
   env: {
-    PS1: "\\W$ ",
+    PS1: "\\W $ ",
     ...process.env,
   },
 });
