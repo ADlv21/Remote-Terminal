@@ -1,10 +1,13 @@
-const WebSocket = require("ws");
-var os = require("os");
-var pty = require("node-pty");
+const express = require("express");
+const expressWs = require("express-ws");
+const os = require("os");
+const pty = require("node-pty");
+const path = require("path");
 
-const wss = new WebSocket.Server({ port: 6060 });
+const app = express();
+expressWs(app);
 
-console.log("Socket is up and running...");
+console.log("Server is up and running...");
 
 var shell = os.platform() === "win32" ? "powershell.exe" : "bash";
 var ptyProcess = pty.spawn(shell, [], {
@@ -15,15 +18,23 @@ var ptyProcess = pty.spawn(shell, [], {
     ...process.env,
   },
 });
-wss.on("connection", (ws) => {
-  console.log("new session");
-  ws.on("message", (command) => {
-    console.log("ws");
-    ptyProcess.write(command);
+
+app.use(express.static(path.join(__dirname, "public")));
+
+app.ws("/shell", (ws, req) => {
+  console.log("New WebSocket connection");
+
+  ws.on("message", (msg) => {
+    console.log("Received WebSocket message:", msg);
+    ptyProcess.write(msg);
   });
 
-  ptyProcess.on("data", function (data) {
+  ptyProcess.on("data", (data) => {
     ws.send(data);
-    console.log(data);
+    console.log("Sending data over WebSocket:", data);
   });
+});
+
+const server = app.listen(6060, () => {
+  console.log("Express.js WebSocket server is listening on port 6060.");
 });
